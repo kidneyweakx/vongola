@@ -1,0 +1,9 @@
+address/hardhat/*
+# hardhat toolbox
+cache
+artifacts
+factories
+typechain
+typechain/*
+test/__snapshots__
+
