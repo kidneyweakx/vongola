@@ -5,6 +5,7 @@ from didcomm.unpack import unpack
 from didcomm.common.resolvers import ResolversConfig
 from didcomm.pack_encrypted import pack_encrypted, PackEncryptedConfig
 
+from ai.prompts import PersonalityRatingPrompt
 from utils import DIDResolverPeerDID, DIDCreatePeerDID, sendMessage
 
 secrets_resolver = SecretsResolverDemo()
@@ -18,7 +19,7 @@ async def main():
   packed_msg = await sendMessage.sendEncrypt(
     fromDID=alice_did,
     toDID=bob_did,
-    message="Hello, Bob!",
+    message="{1, 0, 1, 0 , 1}",
     secrets_resolver=secrets_resolver
   )
 
@@ -32,6 +33,7 @@ async def main():
     packed_msg=packed_msg.packed_msg
   )
   print(unpack_msg.message.body["msg"])
+  print(PersonalityRatingPrompt.get_prompt())
 
 if __name__ == "__main__":
   asyncio.run(main())
