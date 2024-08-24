@@ -18,7 +18,10 @@ export function VoteButton(params: {voteId: string}) {
 
     const { writeContract } = useWriteContract(
         {mutation: {
-            onError: () => { alert("Something went wrong.")}, 
+            onError: (e) => {
+                console.log(e) 
+                alert("Something went wrong.")
+            }, 
             onSuccess: () => { 
                 alert("Good Good.")
                 addVoteCount(account.address ? account.address : "", params.voteId)

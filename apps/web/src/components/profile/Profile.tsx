@@ -4,6 +4,7 @@ import { MBTITable } from "./MBTITable";
 import { MyIssueTable } from "./MyIssueTable";
 import { useEffect, useState } from "react";
 import { getUserInfo, getVotes } from "../../services/api";
+import { InviteQRCode } from "./InviteQrcode";
 
 function Profile() {
 
@@ -43,8 +44,9 @@ function Profile() {
     return (
         <div>
             <div className="my-4 grid grid-cols-3 gap-4 text-black">
-                <div className="flex flex-col justify-between h-[200px] greenCardMain shadow rounded-lg p-8">
-                    <div className="text-3xl font-medium">User Information</div>
+                <div className="flex justify-between h-[200px] greenCardMain shadow rounded-lg p-8">
+                    <div className="text-lg">Your QRCode</div>
+                    <InviteQRCode />
                 </div>
                 <div className="flex flex-col justify-between h-[200px] greenCardMain shadow rounded-lg p-8">
                     <div className="text-3xl font-medium">Voting Count</div>

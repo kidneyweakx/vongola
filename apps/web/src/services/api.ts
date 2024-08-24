@@ -33,6 +33,24 @@ export async function addVoteCount(address: string, voteID: string) {
     }
 }
 
+export async function rateSomeone(from: string, to:string, rating: number[]): Promise<boolean> {
+    console.log(from, to , rating)
+
+    try {
+        const res = await fetch(Host + `/rate_did?user=${from}&to=${to}&rating=${encodeURIComponent(JSON.stringify(rating))}`, {
+            method: "POST",
+            headers: {
+                "ngrok-skip-browser-warning": "69240"
+            }
+        });
+        console.log(res)
+        return true
+    } catch (e) {
+        console.log(e)
+        return false
+    }
+}
+
 export async function createIssue(name: string, description: string): Promise<boolean> {
     const randomNumber = Math.floor(Math.random() * (100000 - 1000 + 1)) + 1000;
 
