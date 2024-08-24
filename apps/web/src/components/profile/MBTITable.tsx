@@ -1,5 +1,7 @@
 export function MBTITable(params: {mbti: number[]}) {
 
+    console.log(params.mbti)
+
     return (
         <div className="">
             <div className="my-6 flex justify-between">

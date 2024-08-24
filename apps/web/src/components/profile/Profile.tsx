@@ -1,6 +1,9 @@
-import { issue } from "../../type";
+import { useAccount } from "wagmi";
+import { issue, user } from "../../type";
 import { MBTITable } from "./MBTITable";
 import { MyIssueTable } from "./MyIssueTable";
+import { useEffect, useState } from "react";
+import { getUserInfo } from "../../services/api";
 
 const issueExample: issue = {
     name: "ethTokyo",
@@ -16,6 +19,21 @@ function Profile() {
 
     const _issues: issue[] = Array(30).fill(issueExample);
 
+    const [userInfo, setUserInfo] = useState<user>()
+    const address = useAccount()
+
+    useEffect(() => {
+        if(address.isConnected && address.address) {
+            init(address.address)
+        }
+    }, [address.isConnected])
+
+    async function init(address: string) {
+        const userInfo = await getUserInfo(address)
+        console.log(userInfo)
+        setUserInfo(userInfo)
+    }
+
     return (
         <div>
             <div className="my-4 grid grid-cols-3 gap-4 text-black">
@@ -24,11 +42,11 @@ function Profile() {
                 </div>
                 <div className="flex flex-col justify-between h-[200px] greenCardMain shadow rounded-lg p-8">
                     <div className="text-3xl font-medium">Voting Count</div>
-                    <div className="text-8xl font-medium">20</div>
+                    <div className="text-8xl font-medium">{userInfo?.vote_count}</div>
                 </div>
                 <div className="flex flex-col justify-between h-[200px] greenCardMain shadow rounded-lg p-8">
                     <div className="text-3xl font-medium">Rating Count</div>
-                    <div className="text-8xl font-medium">20</div>
+                    <div className="text-8xl font-medium">{userInfo?.rate_count}</div>
                 </div>
             </div>
             <div className="my-4 grid grid-cols-3 gap-4 text-black">
@@ -37,7 +55,7 @@ function Profile() {
                     <div className="text-black/60 text-md font-medium">The MBTI is based on your responses and others' evaluations. Use them as a tool for self-reflection and enjoy exploring your personality.</div>
                 </div>
                 <div className="col-span-2 h-[350px] bg-white shadow rounded-lg p-8">
-                    <MBTITable mbti={[30, 50, 45, 10, 80]}/>
+                    <MBTITable mbti={userInfo ? userInfo.mbti as number[] : [10, 20, 30, 40, 50]}/>
                 </div>
             </div>
             <div className="my-4 grid grid-cols-3 gap-4 text-black">

@@ -1,6 +1,16 @@
 import { ConnectButton } from "@rainbow-me/rainbowkit";
+import { useEffect } from "react";
+import { useAccount } from "wagmi";
 
 function Navbar() {
+
+    const address = useAccount()
+
+    useEffect(() => {
+        if(address.isConnected) {
+            console.log(address.address)
+        }
+    }, [address])
 
     return (
         <nav className="w-full bg-white border-gray-200">
