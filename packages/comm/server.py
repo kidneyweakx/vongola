@@ -7,7 +7,7 @@ from peewee import SqliteDatabase, Model, CharField, DateTimeField, IntegerField
 import datetime
 import json
 from ai.prompts import PersonalityRatingPrompt
-
+from fastapi.middleware.cors import CORSMiddleware
 app = FastAPI()
 secrets_resolver = SecretsResolverDemo()
 
@@ -42,6 +42,14 @@ db.create_tables([User, Vote])
 # async def read_root():
 #     did = await DIDCreatePeerDID.create_simple_peer_did(secrets_resolver)
 #     return {"did": did}
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
 @app.get("/get_votes")
 async def get_votes():
     votes = Vote.select()
