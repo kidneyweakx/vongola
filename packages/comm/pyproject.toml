@@ -9,6 +9,8 @@ readme = "README.md"
 python = "^3.12"
 didcomm = "^0.2.0"
 peerdid = "^0.4.0"
+fastapi = {extras = ["standard"], version = "^0.112.1"}
+peewee = "^3.17.6"
 
 
 [build-system]

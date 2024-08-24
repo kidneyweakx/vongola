@@ -18,7 +18,7 @@ async def main():
   packed_msg = await sendMessage.sendEncrypt(
     fromDID=alice_did,
     toDID=bob_did,
-    message="Hello, Bob!",
+    message="{1, 0, 1, 0 , 1}",
     secrets_resolver=secrets_resolver
   )
 

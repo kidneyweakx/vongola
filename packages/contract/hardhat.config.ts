@@ -18,7 +18,9 @@ const chainIds = {
   goerli: 5,
   sepolia: 11155111,
   hardhat: 31337,
-  mainnet: 1
+  mainnet: 1,
+  lineaSepolia: 59141,
+  scrollSepolia: 534351,
 }
 
 // Ensure that we have all the environment variables we need.
@@ -37,6 +39,12 @@ function getChainConfig (chain: keyof typeof chainIds): NetworkUserConfig {
   switch (chain) {
     case "sepolia":
       jsonRpcUrl = "https://rpc.sepolia.org"
+      break
+    case "lineaSepolia":
+      jsonRpcUrl = "https://rpc.sepolia.linea.build"
+      break
+    case "scrollSepolia":
+      jsonRpcUrl = "https://sepolia-rpc.scroll.io"
       break
     default:
       jsonRpcUrl = `https://${chain}.infura.io/v3/${infuraApiKey}`
@@ -60,6 +68,8 @@ const config: HardhatUserConfig = {
     goerli: getChainConfig("goerli"),
     sepolia: getChainConfig("sepolia"),
     mainnet: getChainConfig("mainnet"),
+    lineaSepolia: getChainConfig("lineaSepolia"),
+    scrollSepolia: getChainConfig("scrollSepolia"),
   },
   paths: {
     artifacts: "./artifacts",
