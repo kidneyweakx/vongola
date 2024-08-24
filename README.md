@@ -4,6 +4,9 @@
 <p> Evolvable Decentralized Identity (DID) for Social Apps</p>
 
 <img src="./vongola.png" width="50%" height="50%"></img>
+
+[![](https://img.shields.io/github/license/kidneyweakx/vongola
+)](./LICENSE)
 </div>
 
 ### **ShowCase**
