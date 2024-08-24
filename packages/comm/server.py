@@ -14,6 +14,7 @@ secrets_resolver = SecretsResolverDemo()
 db = SqliteDatabase('users.db')
 db.connect()
 
+
 class User(Model):
     username = CharField(unique=True)
     did = CharField(unique=True)
@@ -28,18 +29,36 @@ class User(Model):
     class Meta:
         database = db  
 
-db.create_tables([User])
+class Vote(Model):
+    vote_id = CharField(unique=True)
+    vote = IntegerField(default=0)
+    class Meta:
+        database = db
+db.create_tables([User, Vote])
+
 
 
 # @app.get("/")
 # async def read_root():
 #     did = await DIDCreatePeerDID.create_simple_peer_did(secrets_resolver)
 #     return {"did": did}
+@app.get("/get_votes")
+async def get_votes():
+    votes = Vote.select()
+    return {"votes": [{ "id": vote.vote_id, "count":vote.vote} for vote in votes]}
+
 @app.get("/add_vote_count")
-async def add_vote(user):
+async def add_vote(user, vote_id):
     user = User.get(User.username == user)
     user.voting_count = user.voting_count + 1
     user.save()
+
+    try:
+        vote = Vote.create(vote_id=vote_id)
+    except:
+        vote = Vote.get(Vote.vote_id == vote_id)
+    vote.vote = vote.vote + 1
+    vote.save()
     return {"voting_count": user.voting_count}
 
 @app.get("/get_vote_count")

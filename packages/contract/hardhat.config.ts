@@ -48,7 +48,7 @@ function getChainConfig (chain: keyof typeof chainIds): NetworkUserConfig {
       jsonRpcUrl = "https://sepolia-rpc.scroll.io"
       break
     case "neroTestnet":
-      jsonRpcUrl = "https://testnet.nerochain.io/"
+      jsonRpcUrl = "https://testnet.nerochain.io"
       break
     default:
       jsonRpcUrl = `https://${chain}.infura.io/v3/${infuraApiKey}`
@@ -131,8 +131,8 @@ const config: HardhatUserConfig = {
         network: "scrollSepolia",
         chainId: 534351,
         urls: {
-          apiURL: "https://scroll-sepolia.l2scan.co/api",
-          browserURL: "https://scroll-sepolia.l2scan.co/"
+          apiURL: "https://api-sepolia.scrollscan.com/api",
+          browserURL: "https://sepolia.scrollscan.com/"
         }
       },
       {
