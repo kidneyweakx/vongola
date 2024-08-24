@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "comm"
+version = "0.1.0"
+description = ""
+authors = ["kidneyweakx <kidneyweakx@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+didcomm = "^0.2.0"
+peerdid = "^0.4.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
