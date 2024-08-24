@@ -11,9 +11,6 @@ export function MyIssueTable(params: { issues: issue[] }) {
                         Issue name
                     </th>
                     <th scope="col" className="px-6 py-3">
-                        End
-                    </th>
-                    <th scope="col" className="px-6 py-3">
                         Status
                     </th>
                     <th scope="col" className="px-6 py-3">
@@ -29,9 +26,6 @@ export function MyIssueTable(params: { issues: issue[] }) {
                                 <th scope="row" className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
                                     {issue.name}
                                 </th>
-                                <td className="px-6 py-4">
-                                    {issue.date.end}
-                                </td>
                                 <td className="px-6 py-4">
                                     {issue.status}
                                 </td>

@@ -2,7 +2,7 @@ import { user } from "../type";
 
 export const Host = "http://localhost:8000"
 
-export const getVotes = async () => {
+export const getVotes = async (): Promise<{id: string, count: number, name: string, description: string}[]> => {
     try {
         const _res = await fetch(Host + "/get_votes", {
             method: "GET",
@@ -12,12 +12,49 @@ export const getVotes = async () => {
         });
 
         const resData = await _res.json();
-        return resData
+        return resData.votes
     } catch (e) {
         console.log(e)
-        return undefined
+        return []
     }
 };
+
+export async function addVoteCount(address: string, voteID: string) {
+    try {
+        const res = await fetch(Host + `/add_vote_count?user=${address}&vote_id=${voteID}`, {
+            method: "GET",
+            headers: {
+                "ngrok-skip-browser-warning": "69240"
+            }
+        });
+        console.log(res)
+    } catch (e) {
+        console.log(e)
+    }
+}
+
+export async function createIssue(name: string, description: string): Promise<boolean> {
+    const randomNumber = Math.floor(Math.random() * (100000 - 1000 + 1)) + 1000;
+
+    try {
+        const _res = await fetch(Host + `/create_vote?vote_id=${randomNumber}&name=${name}&description=${description}`, {
+            method: "POST",
+            headers: {
+                "ngrok-skip-browser-warning": "69240"
+            }
+        });
+
+        const resData = await _res.json();
+        if(resData.vote_id) {
+            return true
+        } else {
+            return false
+        }
+    } catch (e) {
+        console.log(e)
+        return false
+    }
+}
 
 export async function getUserInfo(address: string): Promise<user> {
     const _user: user = {
@@ -44,7 +81,7 @@ export async function getUserInfo(address: string): Promise<user> {
         _user.mbti = _mbti
         _user.vote_count = _static.voteCount
         _user.rate_count = _static.rateCount
-        
+
         return _user
     } catch (e) {
         console.log(e)
@@ -69,7 +106,8 @@ export async function getUserMBTI(address: string): Promise<number[]> {
         });
 
         const resData = await res.json();
-        return resData.rating
+        const numArray: number[] = JSON.parse(resData.rating);
+        return numArray
     } catch (e) {
         console.log(e)
         return [50, 50, 50, 50, 50]

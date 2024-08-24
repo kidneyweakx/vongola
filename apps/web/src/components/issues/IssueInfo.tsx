@@ -3,13 +3,12 @@ import { ModalL } from "../modal/ModalL";
 import { issue } from "../../type";
 import Tokyo from "../../assets/tokyo.png"
 import { useAccount } from "wagmi";
+import { VoteButton } from "./VoteButton";
 
 export function IssueInfo(props: {showBow: boolean, close: () => void, issue: issue}) {
 
     const [isLoading] = useState<boolean>(false);
-
     const address = useAccount()
-
 
     return (
         <ModalL
@@ -33,7 +32,7 @@ export function IssueInfo(props: {showBow: boolean, close: () => void, issue: is
             </div>
             <div className="flex pb-8 px-3 md:px-8 justify-end">
                 {address.isConnected && props.issue.status == "inProgress" ? 
-                <button onClick={() => {}} className="bg-cBlue p-3 text-white rounded-md">Vote</button>:
+                <VoteButton voteId={props.issue.id} />:
                 <button className="bg-cBlue/20 cursor-default p-3 text-white rounded-md">Vote</button>
                 }
             </div>

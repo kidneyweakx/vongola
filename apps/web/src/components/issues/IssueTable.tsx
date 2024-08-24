@@ -2,21 +2,13 @@ import { useEffect, useState } from "react";
 import { issue } from "../../type";
 import { CategoryList } from "./CategoryList";
 import { IssueCard } from "./IssueCard";
-import { getVotes } from "../../services/api";
 
 export function Issuetable(params: {issues: issue[]}) {
 
     const [selected, setSelected] = useState<"inComing" | "inProgress" | "ended" | "all">("all")
     const [issuesDisplay, setIssuesDisplay] = useState<issue[]>(params.issues)
 
-    useEffect(() => {
-        init()
-    }, [])
-
-    async function init() {
-        const t = await getVotes()
-        console.log(t)
-    }
+    console.log(params.issues)
 
     useEffect(() => {
         if(selected == "all") {

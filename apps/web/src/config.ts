@@ -1,10 +1,10 @@
 import { http, createConfig } from 'wagmi'
-import { mainnet, sepolia } from 'wagmi/chains'
+import { scrollSepolia, lineaSepolia } from 'wagmi/chains'
 
 export const config = createConfig({
-  chains: [mainnet, sepolia],
+  chains: [scrollSepolia, lineaSepolia],
   transports: {
-    [mainnet.id]: http(),
-    [sepolia.id]: http(),
+    [scrollSepolia.id]: http("https://scroll-sepolia.chainstacklabs.com"),
+    [lineaSepolia.id]: http("https://linea-sepolia.infura.io/v3/9aa3d95b3bc440fa88ea12eaa4456161"),
   },
 })

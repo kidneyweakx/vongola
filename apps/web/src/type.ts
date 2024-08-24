@@ -6,6 +6,7 @@ export type issue = {
     status: "inComing" | "inProgress" | "ended"
     participants: string[]
     result: string
+    id: string
 }
 
 export type user = {

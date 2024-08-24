@@ -8,11 +8,7 @@ import { BrowserRouter } from 'react-router-dom'
 
 import '@rainbow-me/rainbowkit/styles.css';
 import {
-  mainnet,
-  polygon,
-  optimism,
-  arbitrum,
-  base,
+  scrollSepolia, lineaSepolia
 } from 'wagmi/chains';
 import {
   getDefaultConfig,
@@ -22,7 +18,7 @@ import {
 const config = getDefaultConfig({
   appName: 'My RainbowKit App',
   projectId: 'my-project-id',
-  chains: [mainnet, polygon, optimism, arbitrum, base],
+  chains: [scrollSepolia, lineaSepolia],
   ssr: false,
 });
 

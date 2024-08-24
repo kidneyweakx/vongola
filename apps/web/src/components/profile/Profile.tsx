@@ -3,22 +3,11 @@ import { issue, user } from "../../type";
 import { MBTITable } from "./MBTITable";
 import { MyIssueTable } from "./MyIssueTable";
 import { useEffect, useState } from "react";
-import { getUserInfo } from "../../services/api";
-
-const issueExample: issue = {
-    name: "ethTokyo",
-    date: {start: "2024-08-24", end: "2024-08-25"},
-    description: "This is an example.",
-    creator: ["0xf3419771c2551f88a91Db61cB874347f05640172"],
-    participants: ["0xf3419771c2551f88a91Db61cB874347f05640172"],
-    status: "inComing",
-    result: "Pass"
-}
+import { getUserInfo, getVotes } from "../../services/api";
 
 function Profile() {
 
-    const _issues: issue[] = Array(30).fill(issueExample);
-
+    const [issues, setIssues] = useState<issue[]>([])
     const [userInfo, setUserInfo] = useState<user>()
     const address = useAccount()
 
@@ -32,6 +21,23 @@ function Profile() {
         const userInfo = await getUserInfo(address)
         console.log(userInfo)
         setUserInfo(userInfo)
+        const t = await getVotes()
+        console.log(t)
+        const r = t.map(vote => {
+            const v: issue = {
+                name: vote.name,
+                date: {start: "", end: ""},
+                description: vote.description,
+                creator: [""],
+                participants: [""],
+                status: "inProgress",
+                result: "Unknown",
+                id: vote.id
+            }
+            return v
+        })
+        console.log(r)
+        setIssues(r)
     }
 
     return (
@@ -60,7 +66,7 @@ function Profile() {
             </div>
             <div className="my-4 grid grid-cols-3 gap-4 text-black">
                 <div className="col-span-2 h-[350px] bg-white shadow rounded-lg px-4 overflow-scroll">
-                    <MyIssueTable issues={_issues}/>
+                    <MyIssueTable issues={issues}/>
                 </div>
                     <div className="flex flex-col h-[350px] greenCard shadow rounded-lg p-8">
                         <div className="text-3xl font-medium">Voting Result</div>
