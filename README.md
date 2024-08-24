@@ -14,3 +14,8 @@ Backend
 1. GET /create_did 
 2. POST /rate_did json {[1,1,1,1,1]}
 3. GET /did_result json{[50,50,50,50,50]}
+
+# Deployed Contract
+- Linea Sepolia: https://sepolia.lineascan.build/address/0xe3a6b8Da8932354592E7F3f6199b82D6E2bdBDb2#code
+- Scroll Sepolia: https://scroll-sepolia.l2scan.co/address/0xacCe510e129a9c9E07EC496c923D3beFBDF9E551#code
+- Nero Testnet: 0x71Fc3BE4B619Fd7c279C037eA0Ee09C475175d11

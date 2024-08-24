@@ -21,6 +21,7 @@ const chainIds = {
   mainnet: 1,
   lineaSepolia: 59141,
   scrollSepolia: 534351,
+  neroTestnet: 6660001,
 }
 
 // Ensure that we have all the environment variables we need.
@@ -46,6 +47,9 @@ function getChainConfig (chain: keyof typeof chainIds): NetworkUserConfig {
     case "scrollSepolia":
       jsonRpcUrl = "https://sepolia-rpc.scroll.io"
       break
+    case "neroTestnet":
+      jsonRpcUrl = "https://testnet.nerochain.io/"
+      break
     default:
       jsonRpcUrl = `https://${chain}.infura.io/v3/${infuraApiKey}`
   }
@@ -70,6 +74,7 @@ const config: HardhatUserConfig = {
     mainnet: getChainConfig("mainnet"),
     lineaSepolia: getChainConfig("lineaSepolia"),
     scrollSepolia: getChainConfig("scrollSepolia"),
+    neroTestnet: getChainConfig("neroTestnet"),
   },
   paths: {
     artifacts: "./artifacts",
@@ -109,8 +114,35 @@ const config: HardhatUserConfig = {
       mantleSepolia: "NO_API_KEY",
       baseSepolia: process.env.BASESCAN_API_KEY || "",
       opAvail: "NO_API_KEY",
+      lineaSepolia: process.env.LINEASCAN_API_KEY || "",
+      scrollSepolia: process.env.SCROLLSCAN_API_KEY || "",
+      neroTestnet: "NO_API_KEY",
     },
     customChains: [
+      {
+        network: "lineaSepolia",
+        chainId: 59141,
+        urls: {
+          apiURL: "https://api-sepolia.lineascan.build/api",
+          browserURL: "https://sepolia.lineascan.build/"
+        }
+      },
+      {
+        network: "scrollSepolia",
+        chainId: 534351,
+        urls: {
+          apiURL: "https://scroll-sepolia.l2scan.co/api",
+          browserURL: "https://scroll-sepolia.l2scan.co/"
+        }
+      },
+      {
+        network: "neroTestnet",
+        chainId: 6660001,
+        urls: {
+          apiURL: "https://testnetscan.nerochain.io/api",
+          browserURL: "https://testnetscan.nerochain.io/"
+        }
+      },
     ]
   },
 
