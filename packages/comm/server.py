@@ -32,6 +32,8 @@ class User(Model):
 class Vote(Model):
     vote_id = CharField(unique=True)
     vote = IntegerField(default=0)
+    name = CharField(default="")
+    description = CharField(default="")
     class Meta:
         database = db
 db.create_tables([User, Vote])
@@ -49,11 +51,18 @@ app.add_middleware(
     allow_methods=["*"],
     allow_headers=["*"],
 )
+@app.post("/create_vote")
+async def create_vote(vote_id, name, description):
+    try:
+        vote = Vote.create(vote_id=vote_id, name=name, description=description)
+    except:
+        return {"error": "Vote already exists"}
+    return {"vote_id": vote.vote_id}
 
 @app.get("/get_votes")
 async def get_votes():
     votes = Vote.select()
-    return {"votes": [{ "id": vote.vote_id, "count":vote.vote} for vote in votes]}
+    return {"votes": [{ "id": vote.vote_id, "count":vote.vote, "description" : vote.description, "name": vote.name} for vote in votes]}
 
 @app.get("/add_vote_count")
 async def add_vote(user, vote_id):
