@@ -3,7 +3,7 @@ from didcomm.secrets.secrets_resolver_demo import SecretsResolverDemo
 
 from fastapi import FastAPI
 from utils import DIDCreatePeerDID,sendMessage
-from peewee import SqliteDatabase, Model, CharField, DateTimeField
+from peewee import SqliteDatabase, Model, CharField, DateTimeField, IntegerField
 import datetime
 import json
 
@@ -19,6 +19,9 @@ class User(Model):
     # rating is a array length 5, each index represents a rating
     rating = CharField(default=json.dumps([50, 50, 50, 50, 50]))
     msgs = CharField(default=json.dumps([]))
+    rating_count= IntegerField(default=0)
+    voting_count= IntegerField(default=0)
+    group = CharField(default="0")
     created_at = DateTimeField(default=datetime.datetime.now)
 
     class Meta:
@@ -31,6 +34,22 @@ db.create_tables([User])
 # async def read_root():
 #     did = await DIDCreatePeerDID.create_simple_peer_did(secrets_resolver)
 #     return {"did": did}
+@app.get("/add_vote_count")
+async def add_vote(user):
+    user = User.get(User.username == user)
+    user.voting_count = user.voting_count + 1
+    user.save()
+    return {"voting_count": user.voting_count}
+
+@app.get("/get_vote_count")
+async def get_vote(user):
+    user = User.get(User.username == user)
+    return {"voting_count": user.voting_count}
+
+@app.get("/get_rating_count")
+async def add_rating(user):
+    user = User.get(User.username == user)
+    return {"rating_count": user.rating_count}
 
 @app.get("/create_peer_did")
 async def create_peer_did(user):
@@ -81,6 +100,8 @@ async def rate_did(user, to, rating):
             oldRating[i] = 100
     touser.rating = json.dumps(oldRating)
     touser.save()
+    fromUser.rating_count = fromUser.rating_count + 1
+    fromUser.save()
     return {"message": f"Rating updated {touser.rating}"}
 
 @app.get('/get_rating')
