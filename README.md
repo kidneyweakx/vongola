@@ -29,7 +29,9 @@ Overall, Vongola provides a way for users to showcase multiple facets of their p
 
 ### **Problem Statement**
 
-Current psychological tests cannot fully represent an individual's social media profile. Most social media platforms lack interactive ways to evaluate others. Additionally, most DID products are not peer-to-peer (P2P).
+- Current psychological tests cannot fully represent an individual's social media profile. 
+- Most social media platforms lack interactive ways to evaluate others. 
+- Additionally, most DID products are not peer-to-peer (P2P).
 
 ### **Project Solution**
 
@@ -41,14 +43,13 @@ Current psychological tests cannot fully represent an individual's social media 
 
 **Vongolaとは？**
 
-Vongolaは、ソーシャルアプリのために設計された、進化し続ける分散型アイデンティティ（DID）システムです。基本的な心理テスト（例: MBTI）から始まり、ユーザーはDIDCommプロトコル（https://identity.foundation/didcomm-messaging/spec/）を通じてお互いを評価することができます。これらの評価は、各ユーザーのために独自の分散型アイデンティティを作成するのに役立ちます。
+「Vongola」は、ソーシャルアプリ向けに設計された進化し続ける分散型ID（DID）システムです。ユーザーは、まず基本的な心理テスト（例: MBTI）を受け、その後[DIDCommプロトコル](https://identity.foundation/didcomm-messaging/spec/)を通じて他のユーザーを評価します。これらの評価に基づいて、各ユーザーのために独自の分散型アイデンティティが作成されます。
 
-その後、大規模言語モデル（LLM）を使用して、ユーザーは複数の次元に基づいて10のカテゴリーに分類されます。すべてのデータ（DIDおよび履歴情報を含む）は、ブロックチェーン上に安全に保存され、暗号化されています。ユーザー自身のみがそのアイデンティティを解読でき、グループ内の投票により、ユーザーはユニークなソーシャルパーソナリティを持って議論や意思決定に参加できます。このパーソナリティはコミュニティによって検証され、認識されるものであり、各ソーシャルインタラクションの後に変化する可能性があります。
+さらに、大規模言語モデル（LLM）を使用して、ユーザーは複数の次元に基づき10のカテゴリーに分類されます。すべてのデータ（DIDおよび履歴情報を含む）は、ブロックチェーン上に安全に保存され、暗号化されます。このデータはユーザー自身のみが解読でき、グループ内の投票により、ユーザーはユニークなソーシャルパーソナリティを持って議論や意思決定に参加します。このパーソナリティはコミュニティによって検証され、認識されるものであり、各ソーシャルインタラクションの後に変化する可能性があります。
 
-このシステムにより、ユーザーは異なるソーシャルコンテキストで自分のパーソナリティのさまざまな側面を表現することができます。例えば、内向的な人がアウトドアイベントで積極的に投票に参加すると、その投票の影響力が増すかもしれません。逆に、外向的な人が個別のチャレンジに貢献する場合、このツールの価値が示されるでしょう。
+このシステムを通じて、ユーザーは異なるソーシャルコンテキストで自分のパーソナリティのさまざまな側面を表現することができます。例えば、普段内向的な人がアウトドアイベントで積極的に投票に参加すると、その影響力が増すことがあります。逆に、外向的な人が個別のチャレンジに貢献する場合、このツールの価値が示されるでしょう。
 
-全体として、Vongolaは、安全で分散型の枠組みの中で、ユーザーがさまざまな社会的シチュエーションで自分のパーソナリティの多面的な側面を示すための方法を提供します。
-
+全体として、「Vongola」は安全で分散型の枠組みの中で、ユーザーがさまざまな社会的シチュエーションで自分の多面的なパーソナリティを示すための方法を提供します。
 ---
 
 **問題点**
