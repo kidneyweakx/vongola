@@ -40,7 +40,7 @@ task("deploy:token", "Deploy contract")
 
     if (verify) {
       console.log("verifying contract...")
-      await deployContract.deployTransaction.wait(3)
+      await deployContract.deployTransaction.wait(5)
       try {
         await hre.run("verify:verify", {
           address: deployContract.address,

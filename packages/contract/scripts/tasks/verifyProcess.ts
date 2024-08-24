@@ -18,3 +18,17 @@ task("verify:contract", "Verify deployed contract")
     }
   },
   )
+task("verify:vote", "Verify deployed contract")
+.setAction(async (args, hre) => {
+  try {
+    const contractAddress = fs.readFileSync(`scripts/address/${hre.network.name}/GrpVote.json`)
+    const addressData = JSON.parse(contractAddress.toString())
+    await hre.run("verify:verify", {
+      address: addressData.main,
+      constructorArguments: [],
+      contract: "contracts/GrpVote.sol:GrpVote",
+    })
+  } catch (e) {
+    console.log(e)
+  }
+})
