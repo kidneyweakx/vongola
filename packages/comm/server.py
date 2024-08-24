@@ -6,6 +6,7 @@ from utils import DIDCreatePeerDID,sendMessage
 from peewee import SqliteDatabase, Model, CharField, DateTimeField, IntegerField
 import datetime
 import json
+from ai.prompts import PersonalityRatingPrompt
 
 app = FastAPI()
 secrets_resolver = SecretsResolverDemo()
@@ -113,3 +114,9 @@ async def get_rating(user):
 async def get_all_msgs(user):
     user = User.get(User.username == user)
     return {"msgs": user.msgs}
+
+@app.get('/get_user_group')
+async def get_user_group(user):
+    user = User.get(User.username == user)
+    ans = PersonalityRatingPrompt.gen_ai(PersonalityRatingPrompt.get_prompt()+user.rating)
+    return {"group": ans}
