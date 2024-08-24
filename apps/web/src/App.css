@@ -1,8 +1,7 @@
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  width: 100%;
+  min-height: 1000px;
+  background-color: aliceblue;
 }
 
 .logo {
@@ -39,4 +38,25 @@
 
 .read-the-docs {
   color: #888;
+}
+
+.glass {
+  /* other styles */
+  background: rgba(255, 255, 255, 0.4);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.glass2 {
+  /* other styles */
+  background: rgba(255, 255, 255, 0.15);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.glass6 {
+  /* other styles */
+  background: rgba(255, 255, 255, 0.8);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
 }
