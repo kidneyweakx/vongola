@@ -17,5 +17,5 @@ Backend
 
 # Deployed Contract
 - Linea Sepolia: https://sepolia.lineascan.build/address/0xe3a6b8Da8932354592E7F3f6199b82D6E2bdBDb2#code
-- Scroll Sepolia: https://scroll-sepolia.l2scan.co/address/0xacCe510e129a9c9E07EC496c923D3beFBDF9E551#code
+- Scroll Sepolia: https://sepolia.scrollscan.com/address/0xacCe510e129a9c9E07EC496c923D3beFBDF9E551#code
 - Nero Testnet: 0x71Fc3BE4B619Fd7c279C037eA0Ee09C475175d11
