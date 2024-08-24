@@ -78,7 +78,7 @@ export function DatePickerSection(props: {
               head_cell: { height: "25px" },
               cell: { height: "30px" },
               head: { height: "30px", width: "250px" },
-              table: { width: "250px" },
+              table: { width: "280px" },
               day: { width: "28px", height: "28px" },
               caption: {
                 height: "40px",

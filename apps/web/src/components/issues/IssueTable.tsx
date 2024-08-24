@@ -8,6 +8,8 @@ export function Issuetable(params: {issues: issue[]}) {
     const [selected, setSelected] = useState<"inComing" | "inProgress" | "ended" | "all">("all")
     const [issuesDisplay, setIssuesDisplay] = useState<issue[]>(params.issues)
 
+    console.log(params.issues)
+
     useEffect(() => {
         if(selected == "all") {
             setIssuesDisplay(params.issues)

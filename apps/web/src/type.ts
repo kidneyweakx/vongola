@@ -5,12 +5,14 @@ export type issue = {
     creator: string[]
     status: "inComing" | "inProgress" | "ended"
     participants: string[]
+    result: string
+    id: string
 }
 
 export type user = {
     address: string
     did: string
-    vote_count: string
-    rate_count: string
+    vote_count: number
+    rate_count: number
     mbti: number[]
 }

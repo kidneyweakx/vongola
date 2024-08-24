@@ -1,22 +1,38 @@
+import { useEffect, useState } from "react";
 import { issue } from "../../type";
 import { Issuetable } from "./IssueTable";
-
-const issueExample: issue = {
-    name: "ethTokyo",
-    date: {start: "2024-08-24", end: "2024-08-25"},
-    description: "This is an example.",
-    creator: ["0xf3419771c2551f88a91Db61cB874347f05640172"],
-    participants: ["0xf3419771c2551f88a91Db61cB874347f05640172"],
-    status: "inComing"
-}
+import { getVotes } from "../../services/api";
 
 function Issues() {
 
-    const _issues: issue[] = Array(30).fill(issueExample);
+    const [issues, setIssues] = useState<issue[]>([])
+
+    useEffect(() => {
+        init()
+    }, [])
+
+    async function init() {
+        const t = await getVotes()
+        const r = t.map(vote => {
+            const v: issue = {
+                name: vote.name,
+                date: {start: "", end: ""},
+                description: vote.description,
+                creator: [""],
+                participants: [""],
+                status: "inProgress",
+                result: "Pass",
+                id: vote.id
+            }
+            return v
+        })
+        console.log(r)
+        setIssues(r)
+    }
 
     return (
         <div className="">
-            <Issuetable issues={_issues} />
+            <Issuetable issues={issues} />
         </div>
     )
 }

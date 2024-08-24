@@ -1,19 +1,27 @@
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ModalL } from "../modal/ModalL";
 import { DatePickerSection } from "../modal/DatePicker";
 import Tokyo from "../../assets/tokyo.png"
+import { createIssue } from "../../services/api";
 
 export function IssueCreator() {
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [showBow, setShowBox] = useState<boolean>(false);
   const [taskName, setTaskName] = useState<string>("")
   const [taskDescription, setTaskDescription] = useState<string>("")
-  const [dateSelectedStart, setDateSelectedStart] = useState<Date>();
-  const [dateSelectedEnd, setDateSelectedEnd] = useState<Date>();
+  const [dateSelectedStart, setDateSelectedStart] = useState<Date | undefined>();
+  const [dateSelectedEnd, setDateSelectedEnd] = useState<Date | undefined>();
+
+  useEffect(() => {
+    setTaskDescription("")
+    setDateSelectedStart(undefined)
+    setDateSelectedEnd(undefined)
+    setTaskDescription("")
+  }, [])
+
 
   async function createTask() {
-
     setIsLoading(true)
     if(taskName == "" || dateSelectedStart == undefined || dateSelectedEnd == undefined || taskDescription == "") {
       alert("Fillfull all columns!")
@@ -21,7 +29,15 @@ export function IssueCreator() {
       return
     }
 
+    const res = await createIssue(taskName, taskDescription)
+    if(res) {
+      alert("Good Good")
+      setShowBox(false)
+    } else {
+      alert("Something went wrong")
+    }
     setIsLoading(false)
+
   }
 
   return (
