@@ -1,10 +1,7 @@
-import type { HonoContext } from '../../types'
 import { OpenAPIHono, createRoute, z } from '@hono/zod-openapi'
+import { agent } from '../../lib/did-agent'
 
 const QuerySchema = z.object({
-  member: z.string(),
-  key: z.string(),
-  data: z.string(),
 })
 
 const ResponseSchema = z.object({
@@ -16,8 +13,8 @@ const ResponseErrorSchema = z.object({
 })
 
 const route = createRoute({
-  method: 'post',
-  path: '/add_data',
+  method: 'get',
+  path: '/verify_did',
   request: { query: QuerySchema },
   responses: {
     200: {
@@ -46,20 +43,8 @@ const route = createRoute({
   },
 })
 
-export const add_data = new OpenAPIHono<HonoContext>().openapi(route, async (context) => {
-  const members = await context.env.didAppkv.get('members', 'text')
-  const member = context.req.query('member') as string
-  if (!members?.includes(member)) {
-    return context.json({ error: 'Unauthorized' } as const, 401)
-  }
-  const key = context.req.query('key') as string
-  const data = context.req.query('data')
-  console.log(data)
-  if (!data) {
-    return context.json({ error: 'Invalid data!' } as const, 500)
-  }
-
-  await context.env.didAppkv.put(key, data)
-
-  return context.json({ message: `Successfully added ${data} to the ${key}!` }, 200)
+export const verify_did = new OpenAPIHono<any>().openapi(route, async (context) => {
+  const identifier = await agent.didManagerCreate({ alias: 'default' })
+  console.log(`New identifier created`)
+  return context.json({ message: `Successfully added ${JSON.stringify(identifier, null, 2)} !` }, 200)
 })
