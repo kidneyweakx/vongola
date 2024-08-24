@@ -7,7 +7,8 @@ const issueExample: issue = {
     description: "This is an example.",
     creator: ["0xf3419771c2551f88a91Db61cB874347f05640172"],
     participants: ["0xf3419771c2551f88a91Db61cB874347f05640172"],
-    status: "inComing"
+    status: "inComing",
+    result: "Pass"
 }
 
 function Issues() {

@@ -9,30 +9,30 @@ export function CategoryList(params: {catagorySelector: {selected: "inComing" | 
                     <li>
 
                         {params.catagorySelector.selected == "all" ?
-                        <div className="rounded-full border border-1 shadow-sm block py-2 px-4 bg-white text-blue-700">All</div>
+                        <div className="rounded-full border border-1 shadow-sm block py-2 px-4 bg-white text-cBlue">All</div>
                         :
-                        <div onClick={() => {params.catagorySelector.setSelected("all")}} className="cursor-pointer	rounded-full border border-1 shadow-sm block py-2 px-4 bg-white text-black hover:shadow-inner hover:text-blue-700">All</div>
+                        <div onClick={() => {params.catagorySelector.setSelected("all")}} className="cursor-pointer	rounded-full border border-1 shadow-sm block py-2 px-4 bg-white text-black hover:shadow-inner hover:text-cBlue">All</div>
                         }
                     </li>
                     <li>
                         {params.catagorySelector.selected == "inComing" ?
-                        <div className="rounded-full border border-1 shadow-sm block py-2 px-4 bg-white text-blue-700">In coming</div>
+                        <div className="rounded-full border border-1 shadow-sm block py-2 px-4 bg-white text-cBlue">In coming</div>
                         :
-                        <div onClick={() => {params.catagorySelector.setSelected("inComing")}} className="cursor-pointer rounded-full border border-1 shadow-sm block py-2 px-4 bg-white text-black hover:shadow-inner hover:text-blue-700">In coming</div>
+                        <div onClick={() => {params.catagorySelector.setSelected("inComing")}} className="cursor-pointer rounded-full border border-1 shadow-sm block py-2 px-4 bg-white text-black hover:shadow-inner hover:text-cBlue">In coming</div>
                         }                    
                     </li>
                     <li>
                         {params.catagorySelector.selected == "inProgress" ?
-                        <div className="rounded-full border border-1 shadow-sm block py-2 px-4 bg-white text-blue-700">In progress</div>
+                        <div className="rounded-full border border-1 shadow-sm block py-2 px-4 bg-white text-cBlue">In progress</div>
                         :
-                        <div onClick={() => {params.catagorySelector.setSelected("inProgress")}} className="cursor-pointer rounded-full border border-1 shadow-sm block py-2 px-4 bg-white text-black hover:shadow-inner hover:text-blue-700">In progress</div>
+                        <div onClick={() => {params.catagorySelector.setSelected("inProgress")}} className="cursor-pointer rounded-full border border-1 shadow-sm block py-2 px-4 bg-white text-black hover:shadow-inner hover:text-cBlue">In progress</div>
                         }                    
                     </li>
                     <li>
                         {params.catagorySelector.selected == "ended" ?
-                        <div className="rounded-full border border-1 shadow-sm block py-2 px-4 bg-white text-blue-700">Ended</div>
+                        <div className="rounded-full border border-1 shadow-sm block py-2 px-4 bg-white text-cBlue">Ended</div>
                         :
-                        <div onClick={() => {params.catagorySelector.setSelected("ended")}} className="cursor-pointer rounded-full border border-1 shadow-sm block py-2 px-4 bg-white text-black hover:shadow-inner hover:text-blue-700">Ended</div>
+                        <div onClick={() => {params.catagorySelector.setSelected("ended")}} className="cursor-pointer rounded-full border border-1 shadow-sm block py-2 px-4 bg-white text-black hover:shadow-inner hover:text-cBlue">Ended</div>
                         }                    
                     </li>
                 </ul>

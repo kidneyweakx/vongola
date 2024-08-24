@@ -2,10 +2,14 @@ import { useState } from "react";
 import { ModalL } from "../modal/ModalL";
 import { issue } from "../../type";
 import Tokyo from "../../assets/tokyo.png"
+import { useAccount } from "wagmi";
 
 export function IssueInfo(props: {showBow: boolean, close: () => void, issue: issue}) {
 
     const [isLoading] = useState<boolean>(false);
+
+    const address = useAccount()
+
 
     return (
         <ModalL
@@ -28,7 +32,10 @@ export function IssueInfo(props: {showBow: boolean, close: () => void, issue: is
                 </div>
             </div>
             <div className="flex pb-8 px-3 md:px-8 justify-end">
-                <button onClick={() => {}} className="bg-cBlue p-3 text-white rounded-md">Vote</button>
+                {address.isConnected && props.issue.status == "inProgress" ? 
+                <button onClick={() => {}} className="bg-cBlue p-3 text-white rounded-md">Vote</button>:
+                <button className="bg-cBlue/20 cursor-default p-3 text-white rounded-md">Vote</button>
+                }
             </div>
         </ModalL>
     )

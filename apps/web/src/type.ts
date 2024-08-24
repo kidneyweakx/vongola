@@ -5,6 +5,7 @@ export type issue = {
     creator: string[]
     status: "inComing" | "inProgress" | "ended"
     participants: string[]
+    result: string
 }
 
 export type user = {
